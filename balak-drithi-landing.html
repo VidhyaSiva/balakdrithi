@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balak Drithi — Autism Spectrum Disorder Early Intervention Centre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B2118;
+    --sand:#FBF3E4;
+    --sand-deep:#F3E6CC;
+    --teal:#155048;
+    --teal-deep:#0E3934;
+    --gold:#D99A2B;
+    --gold-soft:#F0C879;
+    --rust:#A6472A;
+    --line: rgba(43,33,24,0.12);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--teal-deep);
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  :focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+
+  /* ---- Header ---- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,228,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; color:var(--teal-deep);}
+  .logo-mark{width:30px; height:30px; flex:none;}
+  .navlinks{display:flex; gap:34px; font-size:0.95rem; font-weight:500; color:var(--ink);}
+  .navlinks a{opacity:0.82; transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--teal); color:#fff; padding:11px 22px; border-radius:999px;
+    font-size:0.92rem; font-weight:600; white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--teal-deep);}
+  @media(max-width:820px){ .navlinks{display:none;} }
+
+  /* ---- Hero ---- */
+  .hero{padding:76px 0 60px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+  @media(max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:44px;} }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--sand-deep); border:1px solid var(--line);
+    padding:7px 14px; border-radius:999px; font-size:0.82rem; font-weight:600;
+    color:var(--rust); letter-spacing:0.03em; margin-bottom:22px;
+  }
+  .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--rust);}
+  h1.hero-title{font-size:clamp(2.3rem, 4.4vw, 3.6rem); line-height:1.08; margin-bottom:22px;}
+  h1.hero-title em{font-style:italic; color:var(--rust);}
+  .hero-sub{font-size:1.14rem; color:#4a4034; max-width:46ch; margin-bottom:32px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--rust); color:#fff; padding:14px 26px; border-radius:999px;
+    font-weight:600; font-size:0.98rem; display:inline-block; transition:transform .15s, background .2s;
+  }
+  .btn-primary:hover{background:#8b3a22; transform:translateY(-1px);}
+  .btn-secondary{
+    border:1.5px solid var(--teal); color:var(--teal); padding:13px 24px; border-radius:999px;
+    font-weight:600; font-size:0.98rem; display:inline-block; transition:background .2s;
+  }
+  .btn-secondary:hover{background:var(--sand-deep);}
+
+  /* ---- Signature block-stack graphic ---- */
+  .stack-wrap{position:relative; display:flex; justify-content:center;}
+  .stack{display:flex; flex-direction:column-reverse; align-items:center; gap:8px;}
+  .block{
+    display:flex; align-items:center; justify-content:space-between;
+    width:290px; padding:14px 20px; border-radius:10px; color:#fff;
+    font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem;
+    box-shadow:0 6px 14px rgba(43,33,24,0.14);
+    opacity:0; transform:translateY(18px);
+    animation:rise .6s ease forwards;
+  }
+  .block span.age{font-family:'Work Sans',sans-serif; font-weight:600; font-size:0.78rem; opacity:0.85; letter-spacing:0.03em;}
+  .b1{background:var(--teal); animation-delay:.05s; width:230px;}
+  .b2{background:var(--gold); color:var(--ink); animation-delay:.22s; width:258px;}
+  .b3{background:var(--rust); animation-delay:.39s; width:286px;}
+  .b4{background:var(--teal-deep); animation-delay:.56s; width:314px;}
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    .block{animation:none; opacity:1; transform:none;}
+  }
+  .stack-caption{text-align:center; margin-top:18px; font-size:0.88rem; color:#6b5f4f; max-width:280px;}
+
+  /* ---- Section shared ---- */
+  section{padding:76px 0;}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-eyebrow{font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--rust); margin-bottom:10px;}
+  h2.section-title{font-size:clamp(1.7rem,3vw,2.3rem); margin-bottom:14px;}
+  .section-body{color:#4a4034; font-size:1.03rem;}
+
+  /* ---- Who we're for ---- */
+  .for-band{background:var(--teal-deep); color:#fdf6e8;}
+  .for-band h2, .for-band .section-body{color:#fdf6e8;}
+  .for-band .section-body{color:#cfe3df;}
+  .for-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:8px;}
+  @media(max-width:820px){ .for-grid{grid-template-columns:1fr;} }
+  .for-card{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+    border-radius:var(--radius); padding:26px;
+  }
+  .for-card h3{color:var(--gold-soft); font-size:1.12rem; margin-bottom:10px;}
+  .for-card p{color:#cfe3df; font-size:0.95rem;}
+
+  /* ---- Services ---- */
+  .svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media(max-width:820px){ .svc-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:560px){ .svc-grid{grid-template-columns:1fr;} }
+  .svc-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; transition:box-shadow .2s, transform .2s;
+  }
+  .svc-card:hover{box-shadow:0 10px 24px rgba(43,33,24,0.08); transform:translateY(-2px);}
+  .svc-icon{width:42px; height:42px; margin-bottom:16px;}
+  .svc-card h3{font-size:1.08rem; margin-bottom:8px;}
+  .svc-card p{font-size:0.92rem; color:#5a4f40;}
+
+  /* ---- Approach / promise strip ---- */
+  .promise{
+    background:var(--sand-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .promise-inner{display:flex; align-items:center; gap:40px; flex-wrap:wrap; justify-content:space-between;}
+  .promise-text{font-family:'Fraunces',serif; font-size:clamp(1.3rem,2.4vw,1.7rem); max-width:560px; color:var(--teal-deep);}
+  .promise-text em{color:var(--rust); font-style:italic;}
+  .promise-stats{display:flex; gap:36px;}
+  .stat{text-align:left;}
+  .stat-num{font-family:'Fraunces',serif; font-size:2rem; color:var(--rust); font-weight:600;}
+  .stat-label{font-size:0.82rem; color:#5a4f40; max-width:120px;}
+
+  /* ---- Team ---- */
+  .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media(max-width:820px){ .team-grid{grid-template-columns:1fr;} }
+  .team-card{text-align:left;}
+  .team-avatar{
+    width:100%; aspect-ratio:1; border-radius:var(--radius); margin-bottom:16px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:2.4rem; font-weight:600; color:#fff;
+  }
+  .avatar-1{background:var(--teal);} .avatar-2{background:var(--rust);} .avatar-3{background:var(--gold); color:var(--ink);}
+  .team-card h3{font-size:1.08rem; margin-bottom:2px;}
+  .team-role{font-size:0.88rem; color:var(--rust); font-weight:600; margin-bottom:8px;}
+  .team-bio{font-size:0.9rem; color:#5a4f40;}
+
+  /* ---- CTA / contact ---- */
+  .cta-band{background:var(--teal); color:#fff; text-align:center;}
+  .cta-band h2{color:#fff;}
+  .cta-band p{color:#cfe3df; max-width:520px; margin:14px auto 30px; font-size:1.02rem;}
+
+  /* ---- Footer ---- */
+  footer{background:var(--teal-deep); color:#cfe3df; padding:44px 0 30px; font-size:0.88rem;}
+  .footer-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;}
+  footer a{opacity:0.85;} footer a:hover{opacity:1;}
+  .foot-cols{display:flex; gap:56px; flex-wrap:wrap;}
+  .foot-col h4{font-family:'Work Sans',sans-serif; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--gold-soft); margin-bottom:12px;}
+  .foot-col a{display:block; margin-bottom:8px; color:#cfe3df;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.12); margin-top:36px; padding-top:20px; text-align:center; color:#9fb3ae;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="24" width="32" height="10" rx="2" fill="#155048"/>
+        <rect x="9" y="13" width="22" height="10" rx="2" fill="#D99A2B"/>
+        <rect x="14" y="3" width="12" height="9" rx="2" fill="#A6472A"/>
+      </svg>
+      Balak Drithi
+    </div>
+    <nav class="navlinks">
+      <a href="#approach">Our Approach</a>
+      <a href="#services">Services</a>
+      <a href="#for">Who We're For</a>
+      <a href="#team">Our Team</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Now welcoming families in Chennai and Coimbatore</div>
+      <h1 class="hero-title">Building strong foundations, <em>one child at a time</em></h1>
+      <p class="hero-sub">Balak Drithi is a dedicated early intervention centre for children ages 2–8 with Autism Spectrum Disorder, bringing evidence-based, individualised ABA care to families who deserve better than a hazy diagnosis and a long wait.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Book an assessment</a>
+        <a href="#approach" class="btn-secondary">Explore our approach</a>
+      </div>
+    </div>
+    <div class="stack-wrap">
+      <div>
+        <div class="stack">
+          <div class="block b1"><span>Age 2–3</span><span class="age">First steps</span></div>
+          <div class="block b2"><span>Age 4–5</span><span class="age">Building skills</span></div>
+          <div class="block b3"><span>Age 6–7</span><span class="age">Growing confidence</span></div>
+          <div class="block b4"><span>Age 8</span><span class="age">Ready for what's next</span></div>
+        </div>
+        <p class="stack-caption">Every child's foundation is built one stage at a time — never rushed, never skipped.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="for-band" id="for">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow" style="color:#F0C879;">Who we're for</div>
+      <h2 class="section-title">Families who need clarity, not another waiting room</h2>
+      <p class="section-body">We work with a specific population, deliberately — so every family gets the depth of care that comes from focus, not a one-size-fits-all classroom.</p>
+    </div>
+    <div class="for-grid">
+      <div class="for-card">
+        <h3>Parents seeking a real diagnosis</h3>
+        <p>No more "mild autism, review in six months." We use structured, standardised assessment so you know exactly where your child stands — and what to do next.</p>
+      </div>
+      <div class="for-card">
+        <h3>Children ages 2–8</h3>
+        <p>The window where early intervention matters most. Our programmes meet your child exactly where they are developmentally, not where a calendar says they should be.</p>
+      </div>
+      <div class="for-card">
+        <h3>Families ready to be part of the work</h3>
+        <p>Progress happens between sessions too. We work closely with parents — not just children — because a child's biggest advocate is the family that understands them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Our philosophy</div>
+      <h2 class="section-title">Three commitments we call <span style="white-space:nowrap;">the 3 Cs</span></h2>
+      <p class="section-body">Everything we do traces back to three things we refuse to compromise on.</p>
+    </div>
+    <div class="svc-grid" style="margin-bottom:8px;">
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="19" stroke="#155048" stroke-width="2"/><path d="M14 21l5 5 9-11" stroke="#A6472A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Competence in children</h3>
+        <p>Helping every child build the real, everyday life skills they need to thrive on their own terms — not just pass a test.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M21 6c8 0 15 6 15 14s-7 14-15 14S6 28 6 20 13 6 21 6z" stroke="#D99A2B" stroke-width="2"/><circle cx="21" cy="20" r="4" fill="#A6472A"/></svg>
+        <h3>Confidence in parents</h3>
+        <p>You are your child's first and most important advocate. We work alongside you, not around you — so you know your child can carry forward without you.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M6 32V16L21 5l15 11v16H6z" stroke="#155048" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M16 32V21h10v11" stroke="#A6472A" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Compassion in providers</h3>
+        <p>Every child is met with acceptance, not a search for what to "fix." Their differences are understood, not pathologised.</p>
+      </div>
+    </div>
+    <div class="promise">
+      <div class="wrap promise-inner" style="padding:40px 0;">
+        <p class="promise-text">We don't do <em>eclectic</em> care — a bit of this, a bit of that, whatever seems to work. Every method we use is <em>evidence-based</em>, or we don't use it.</p>
+        <div class="promise-stats">
+          <div class="stat"><div class="stat-num">2–8</div><div class="stat-label">Focused age range, no exceptions</div></div>
+          <div class="stat"><div class="stat-num">1:1</div><div class="stat-label">Individualised care model</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Our services</div>
+      <h2 class="section-title">Comprehensive care, without the runaround</h2>
+      <p class="section-body">Assessment, intervention, and family support — coordinated under one roof, so you're never left piecing it together alone.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="19" stroke="#155048" stroke-width="2"/><path d="M14 21l5 5 9-11" stroke="#A6472A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Diagnostic assessment</h3>
+        <p>Structured, standardised evaluation using gold-standard tools like ADOS-2 — clear answers about autism, not vague impressions.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M21 6c8 0 15 6 15 14s-7 14-15 14S6 28 6 20 13 6 21 6z" stroke="#D99A2B" stroke-width="2"/><circle cx="21" cy="20" r="4" fill="#A6472A"/></svg>
+        <h3>Early intervention (ABA-based)</h3>
+        <p>Individualised, play-driven programmes that build communication, social connection, and everyday independence.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M6 32V16L21 5l15 11v16H6z" stroke="#155048" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M16 32V21h10v11" stroke="#A6472A" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Speech & occupational therapy</h3>
+        <p>Supporting communication, sensory processing, and daily-living skills alongside behavioural intervention.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M21 8c-7 4-13 4-13 4v10c0 8 6 12 13 14 7-2 13-6 13-14V12s-6 0-13-4z" stroke="#D99A2B" stroke-width="2"/></svg>
+        <h3>Parent coaching</h3>
+        <p>Practical, judgement-free guidance so families feel equipped — not just informed — between sessions.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><rect x="7" y="7" width="28" height="20" rx="2" stroke="#155048" stroke-width="2"/><path d="M7 30h28M14 34h14" stroke="#A6472A" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>School readiness</h3>
+        <p>Building the skills that determine whether formal schooling actually works for your child — on their timeline, not the calendar's.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><circle cx="14" cy="15" r="5" stroke="#D99A2B" stroke-width="2"/><circle cx="28" cy="15" r="5" stroke="#D99A2B" stroke-width="2"/><path d="M6 34c0-6 4-10 8-10s8 4 8 10M20 34c0-6 4-10 8-10s8 4 8 10" stroke="#A6472A" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Referral partnerships</h3>
+        <p>Working directly with paediatricians and neuro-paediatricians for the fastest possible path from concern to care.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team" style="background:var(--sand-deep);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Behind Balak Drithi</div>
+      <h2 class="section-title">Built by people who've lived this work, not just studied it</h2>
+      <p class="section-body">We didn't set out to build another center from scratch. We brought together the specific expertise this work actually demands.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="19" stroke="#155048" stroke-width="2"/><path d="M14 21l5 5 9-11" stroke="#A6472A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Hands-on special education</h3>
+        <p>Years of direct, on-the-ground early intervention experience — the kind that comes from actually working with children, not just studying the theory.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M6 32V16L21 5l15 11v16H6z" stroke="#155048" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M16 32V21h10v11" stroke="#A6472A" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Decades of school leadership</h3>
+        <p>Deep, practical understanding of what inclusive education actually requires — and where it falls short for children who need more.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M21 6c8 0 15 6 15 14s-7 14-15 14S6 28 6 20 13 6 21 6z" stroke="#D99A2B" stroke-width="2"/><circle cx="21" cy="20" r="4" fill="#A6472A"/></svg>
+        <h3>25 years of evidence-based practice</h3>
+        <p>Guided by a practitioner who has spent a quarter-century running an evidence-based, ABA-focused autism center — and learning, firsthand, what actually works in India.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><circle cx="14" cy="15" r="5" stroke="#D99A2B" stroke-width="2"/><circle cx="28" cy="15" r="5" stroke="#D99A2B" stroke-width="2"/><path d="M6 34c0-6 4-10 8-10s8 4 8 10M20 34c0-6 4-10 8-10s8 4 8 10" stroke="#A6472A" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Pediatric referral partnership</h3>
+        <p>A practicing pediatrician's perspective on catching developmental concerns early — often before a formal diagnosis is even sought.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><rect x="7" y="7" width="28" height="20" rx="2" stroke="#155048" stroke-width="2"/><path d="M7 30h28M14 34h14" stroke="#A6472A" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Behavior technician experience</h3>
+        <p>Real, current front-line ABA/RBT experience working directly with children in an established international behavioral center.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 42 42" fill="none"><path d="M21 8c-7 4-13 4-13 4v10c0 8 6 12 13 14 7-2 13-6 13-14V12s-6 0-13-4z" stroke="#D99A2B" stroke-width="2"/></svg>
+        <h3>Technology, strategy & investment</h3>
+        <p>Three decades of enterprise technology and business leadership, paired with committed family investment behind building this the right way — not the fast way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <h2 class="section-title">Ready to talk about your child?</h2>
+    <p>Reach out and someone from our team will get back to you within two business days.</p>
+    <a href="mailto:hello@balakdrithi.org" class="btn-primary" style="background:var(--gold); color:var(--ink);">Contact us</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <div class="logo" style="color:#fdf6e8; margin-bottom:12px;">Balak Drithi</div>
+      <p style="max-width:260px; color:#9fb3ae;">Autism Spectrum Disorder Early Intervention Centre — Chennai & Coimbatore, Tamil Nadu.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#approach">Our Approach</a>
+        <a href="#services">Services</a>
+        <a href="#team">Our Team</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@balakdrithi.org">hello@balakdrithi.org</a>
+        <a href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">© 2026 Balak Drithi Foundation. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
