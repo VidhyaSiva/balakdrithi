@@ -50,7 +50,8 @@ border-bottom:1px solid var(--line);
 }
 .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
 .logo{display:flex; align-items:center; gap:10px; font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:1.3rem; color:var(--teal-deep);}
-.logo-mark{width:30px; height:30px; flex:none;}
+.logo-mark{height:38px; width:auto; flex:none; object-fit:contain;}
+.footer-logo-mark{height:34px; width:auto; flex:none; object-fit:contain;}
 .navlinks{display:flex; gap:34px; font-size:0.95rem; font-weight:500; color:var(--ink);}
 .navlinks a{opacity:0.82; transition:opacity .2s;}
 .navlinks a:hover{opacity:1;}
@@ -286,11 +287,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <header>
 <div class="wrap nav">
 <div class="logo">
-<svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-<rect x="4" y="24" width="32" height="10" rx="2" fill="#155048"/>
-<rect x="9" y="13" width="22" height="10" rx="2" fill="#D99A2B"/>
-<rect x="14" y="3" width="12" height="9" rx="2" fill="#A6472A"/>
-</svg>
+<img src="logo.png" alt="Balak Drithi logo" class="logo-mark">
 Balak Drithi
 </div>
 <nav class="navlinks">
@@ -521,7 +518,10 @@ Balak Drithi
 <footer>
 <div class="wrap footer-inner">
 <div>
-<div class="logo" style="color:#fdf6e8; margin-bottom:12px;">Balak Drithi</div>
+<div class="logo" style="color:#fdf6e8; margin-bottom:12px;">
+<img src="logo.png" alt="Balak Drithi logo" class="footer-logo-mark">
+Balak Drithi
+</div>
 <p style="max-width:260px; color:#9fb3ae;">Autism Spectrum Disorder Early Intervention Centre. Chennai & Coimbatore, Tamil Nadu.</p>
 </div>
 <div class="foot-cols">
