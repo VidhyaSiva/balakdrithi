@@ -261,6 +261,15 @@ aspect-ratio:16/9;
 }
 .video-frame video, .video-frame iframe{width:100%; height:100%; display:block; border:0;}
 
+/* ---- Vision & Mission ---- */
+.vm-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:48px;}
+@media(max-width:820px){ .vm-grid{grid-template-columns:1fr;} }
+.vm-card{background:var(--sand-deep); border:1px solid var(--line); border-radius:var(--radius); padding:32px;}
+.vm-card .vm-label{font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--rust); margin-bottom:12px;}
+.vm-card p{font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:clamp(1.15rem,2vw,1.4rem); line-height:1.45; color:var(--teal-deep);}
+.vm-video-head{text-align:center; margin:0 auto 24px; max-width:640px;}
+.vm-video-head h3{font-size:clamp(1.3rem,2.4vw,1.7rem); margin-bottom:8px;}
+
 /* ---- Team ---- */
 .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
 @media(max-width:820px){ .team-grid{grid-template-columns:1fr;} }
@@ -299,6 +308,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 Balak Drithi
 </div>
 <nav class="navlinks">
+<a href="#vision">Our Mission</a>
 <a href="#approach">Our Approach</a>
 <a href="#services">Services</a>
 <a href="#for">Who We're For</a>
@@ -370,6 +380,32 @@ Balak Drithi
 <h3>Families interested in being a part of the work</h3>
 <p>We work closely with entire families, because a child's biggest advocate is a family that understands them.</p>
 </div>
+</div>
+</div>
+</section>
+
+<section id="vision">
+<div class="wrap">
+<div class="section-head reveal">
+<div class="section-eyebrow">Vision &amp; mission</div>
+<h2 class="section-title">Why we exist</h2>
+</div>
+<div class="vm-grid">
+<div class="vm-card reveal-fade">
+<div class="vm-label">Our vision</div>
+<p>A world where every child with Autism Spectrum Disorder builds the life skills to live with dignity, confidence and independence.</p>
+</div>
+<div class="vm-card reveal-fade">
+<div class="vm-label">Our mission</div>
+<p>To help children with Autism Spectrum Disorder build real-world life skills through compassionate, evidence-based, assent-based ABA therapy, delivered by expert, well-trained therapists, with families as true partners in the journey.</p>
+</div>
+</div>
+<div class="vm-video-head reveal">
+<h3>Why Balak Drithi?</h3>
+<p class="section-body">A two-and-a-half-minute look at what makes us different, and where we are today.</p>
+</div>
+<div class="video-frame reveal-fade">
+<iframe src="https://www.youtube.com/embed/APn_ZK_nxTM" title="Why Balak Drithi?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
 </div>
 </div>
 </section>
