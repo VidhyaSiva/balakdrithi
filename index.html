@@ -687,6 +687,98 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 </div>
 </div>
 </div>
-<div cl
+<div class="wrap foot-bottom">© 2026 Balak Drithi Foundation. All rights reserved.</div>
+</footer>
 
+<script>
+document.getElementById('inquiry-form').addEventListener('submit', function(e){
+e.preventDefault();
+var name = document.getElementById('hf-name').value.trim();
+var email = document.getElementById('hf-email').value.trim();
+var interest = document.getElementById('hf-interest').value;
+var message = document.getElementById('hf-message').value.trim();
+var subject = encodeURIComponent('Balak Drithi inquiry: ' + interest);
+var body = encodeURIComponent(
+'Name: ' + name + '\n' +
+'Email: ' + email + '\n' +
+'Interested in: ' + interest + '\n\n' +
+message
+);
+window.location.href = 'mailto:hello@balakdrithi.com?subject=' + subject + '&body=' + body;
+});
+
+(function(){
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var layers = document.querySelectorAll('.hero-bg-parallax');
+if(reduce || !layers.length) return;
+var ticking = false;
+function update(){
+var y = window.scrollY;
+layers.forEach(function(el){
+var speed = parseFloat(el.dataset.speed) || 0.1;
+el.style.transform = 'translateY(' + (y * speed) + 'px)';
+});
+ticking = false;
+}
+window.addEventListener('scroll', function(){
+if(!ticking){ requestAnimationFrame(update); ticking = true; }
+}, {passive:true});
+})();
+
+(function(){
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var blocks = document.querySelectorAll('.hero-bg-block');
+var hero = document.querySelector('.hero');
+if(!blocks.length || !hero) return;
+if(reduce){
+blocks.forEach(function(b){ b.classList.add('is-visible'); });
+return;
+}
+var triggered = false;
+function reveal(){
+if(triggered) return;
+triggered = true;
+blocks.forEach(function(b, i){
+setTimeout(function(){ b.classList.add('is-visible'); }, i * 550);
+});
+}
+if('IntersectionObserver' in window){
+var obs = new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(entry.isIntersecting){ reveal(); obs.disconnect(); }
+});
+}, {threshold:0.2});
+obs.observe(hero);
+} else {
+reveal();
+}
+})();
+
+document.querySelectorAll('.cs-card').forEach(function(card){
+card.addEventListener('click', function(){
+card.classList.toggle('is-active');
+});
+});
+
+(function(){
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var els = document.querySelectorAll('.reveal, .reveal-fade');
+if(!els.length) return;
+if(reduce || !('IntersectionObserver' in window)){
+els.forEach(function(el){ el.classList.add('is-visible'); });
+return;
+}
+var obs = new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(entry.isIntersecting){
+entry.target.classList.add('is-visible');
+obs.unobserve(entry.target);
+}
+});
+}, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+els.forEach(function(el){ obs.observe(el); });
+})();
+</script>
+</body>
+</html>
 
