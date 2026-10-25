@@ -372,6 +372,25 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <option value="Other">Other</option>
 </select>
 </div>
+<div class="form-row">
+<div class="form-group">
+<label for="hf-referral">How did you hear about us?</label>
+<select id="hf-referral" name="referral">
+<option value="">Choose…</option>
+<option value="doctor">Doctor, clinic or hospital</option>
+<option value="school">School</option>
+<option value="community">Residential community</option>
+<option value="search">Website or Google search</option>
+<option value="social">Social media</option>
+<option value="friend">Friend or family</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="form-group">
+<label for="hf-referral-name">Name (doctor, school, community…)</label>
+<input type="text" id="hf-referral-name" name="referral_name" maxlength="160">
+</div>
+</div>
 <div class="form-group">
 <label for="hf-message">Message</label>
 <textarea id="hf-message" name="message" rows="3" placeholder="Tell us a bit about your child, or your background."></textarea>
@@ -731,6 +750,8 @@ parent_name: document.getElementById('hf-name').value.trim(),
 phone: phone,
 email: email,
 message: document.getElementById('hf-message').value.trim(),
+referral_type: document.getElementById('hf-referral').value,
+referral_org: document.getElementById('hf-referral-name').value.trim(),
 consent: document.getElementById('hf-consent').checked,
 company: document.getElementById('hf-company').value,
 source: 'website'
