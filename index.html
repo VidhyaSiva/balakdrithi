@@ -109,6 +109,13 @@ border-color:var(--teal); outline:none;
 .hero-form textarea{resize:vertical; min-height:76px; font-family:inherit;}
 .hero-form-submit{border:none; cursor:pointer; align-self:flex-start; font-family:'Work Sans', sans-serif; margin-top:2px;}
 @media(max-width:480px){ .form-row{flex-direction:column;} }
+.hero-form .consent{display:flex; gap:10px; align-items:flex-start; font-size:0.8rem; line-height:1.4; color:var(--ink);}
+.hero-form .consent input{width:16px; height:16px; padding:0; margin-top:2px; flex-shrink:0; accent-color:var(--teal);}
+.hero-form .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+.hero-form .form-hint{font-size:0.75rem; color:#5d6b70; margin-top:-6px;}
+.form-status{font-size:0.9rem; padding:10px 14px; border-radius:10px; display:none;}
+.form-status.ok{display:block; background:#e6f2ea; color:#1e6b37;}
+.form-status.err{display:block; background:#fdecea; color:#a3261b;}
 
 /* ---- Hero visual: milestone pyramid block stack (own grid column, not overlaid) ---- */
 .hero-visual{display:flex; justify-content:center; width:100%;}
@@ -345,13 +352,18 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <div class="form-row">
 <div class="form-group">
 <label for="hf-name">Name</label>
-<input type="text" id="hf-name" name="name" required>
+<input type="text" id="hf-name" name="name" autocomplete="name" required>
+</div>
+<div class="form-group">
+<label for="hf-phone">WhatsApp number</label>
+<input type="tel" id="hf-phone" name="phone" autocomplete="tel" placeholder="98400 12345">
+</div>
 </div>
 <div class="form-group">
 <label for="hf-email">Email</label>
-<input type="email" id="hf-email" name="email" required>
+<input type="email" id="hf-email" name="email" autocomplete="email">
 </div>
-</div>
+<p class="form-hint">Please give a WhatsApp number or an email, so we can reach you.</p>
 <div class="form-group">
 <label for="hf-interest">I'm interested in</label>
 <select id="hf-interest" name="interest">
@@ -364,7 +376,10 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <label for="hf-message">Message</label>
 <textarea id="hf-message" name="message" rows="3" placeholder="Tell us a bit about your child, or your background."></textarea>
 </div>
-<button type="submit" class="btn-primary hero-form-submit">Send inquiry</button>
+<div class="hp" aria-hidden="true"><label for="hf-company">Company</label><input type="text" id="hf-company" name="company" tabindex="-1" autocomplete="off"></div>
+<label class="consent"><input type="checkbox" id="hf-consent" required> <span>I agree that Balak Drithi may store these details and contact me about my enquiry. I can ask for them to be deleted at any time.</span></label>
+<p class="form-status" id="hf-status" role="status"></p>
+<button type="submit" class="btn-primary hero-form-submit" id="hf-submit">Send inquiry</button>
 </form>
 </div>
 <div class="hero-visual" aria-hidden="true">
@@ -693,18 +708,49 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <script>
 document.getElementById('inquiry-form').addEventListener('submit', function(e){
 e.preventDefault();
-var name = document.getElementById('hf-name').value.trim();
+var form = this;
+var status = document.getElementById('hf-status');
+var btn = document.getElementById('hf-submit');
+var phone = document.getElementById('hf-phone').value.trim();
 var email = document.getElementById('hf-email').value.trim();
 var interest = document.getElementById('hf-interest').value;
-var message = document.getElementById('hf-message').value.trim();
-var subject = encodeURIComponent('Balak Drithi inquiry: ' + interest);
-var body = encodeURIComponent(
-'Name: ' + name + '\n' +
-'Email: ' + email + '\n' +
-'Interested in: ' + interest + '\n\n' +
-message
-);
-window.location.href = 'mailto:hello@balakdrithi.com?subject=' + subject + '&body=' + body;
+status.className = 'form-status';
+if(!phone && !email){
+status.textContent = 'Please give a WhatsApp number or an email so we can reach you.';
+status.className = 'form-status err';
+return;
+}
+var types = {'Enrolling my child':'enrolment','Joining the team':'careers','Other':'other'};
+btn.disabled = true; btn.textContent = 'Sending…';
+fetch('https://app.balakdrithi.com/api/enquiry', {
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body: JSON.stringify({
+type: types[interest] || 'other',
+parent_name: document.getElementById('hf-name').value.trim(),
+phone: phone,
+email: email,
+message: document.getElementById('hf-message').value.trim(),
+consent: document.getElementById('hf-consent').checked,
+company: document.getElementById('hf-company').value,
+source: 'website'
+})
+}).then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+.then(function(data){
+if(data && data.ok){
+form.reset();
+status.textContent = 'Thank you! We have your enquiry and will be in touch soon.';
+status.className = 'form-status ok';
+} else {
+status.textContent = (data && data.error) || 'Something went wrong. Please email hello@balakdrithi.com.';
+status.className = 'form-status err';
+}
+})
+.catch(function(){
+status.textContent = 'Could not send. Please check your connection, or email hello@balakdrithi.com.';
+status.className = 'form-status err';
+})
+.then(function(){ btn.disabled = false; btn.textContent = 'Send inquiry'; });
 });
 
 (function(){
