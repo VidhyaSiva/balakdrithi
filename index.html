@@ -108,6 +108,9 @@ border-color:var(--teal); outline:none;
 }
 .hero-form textarea{resize:vertical; min-height:76px; font-family:inherit;}
 .hero-form-submit{border:none; cursor:pointer; align-self:flex-start; font-family:'Work Sans', sans-serif; margin-top:2px;}
+.form-actions{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:2px;}
+.form-actions .hero-form-submit{margin-top:0;}
+.form-status a{font-weight:600; text-decoration:underline;}
 @media(max-width:480px){ .form-row{flex-direction:column;} }
 .hero-form .consent{display:flex; gap:10px; align-items:flex-start; font-size:0.8rem; line-height:1.4; color:var(--ink);}
 .hero-form .consent input{width:16px; height:16px; padding:0; margin-top:2px; flex-shrink:0; accent-color:var(--teal);}
@@ -398,7 +401,10 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <div class="hp" aria-hidden="true"><label for="hf-company">Company</label><input type="text" id="hf-company" name="company" tabindex="-1" autocomplete="off"></div>
 <label class="consent"><input type="checkbox" id="hf-consent" required> <span>I agree that Balak Drithi may store these details and contact me about my enquiry. I can ask for them to be deleted at any time.</span></label>
 <p class="form-status" id="hf-status" role="status"></p>
+<div class="form-actions">
 <button type="submit" class="btn-primary hero-form-submit" id="hf-submit">Send inquiry</button>
+<a href="https://app.balakdrithi.com/enquire?src=website" class="btn-secondary">Tell us more about your child</a>
+</div>
 </form>
 </div>
 <div class="hero-visual" aria-hidden="true">
@@ -718,6 +724,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <h4>Contact</h4>
 <a href="mailto:hello@balakdrithi.com">hello@balakdrithi.com</a>
 <a href="#contact">Get in touch</a>
+<a href="https://app.balakdrithi.com/login">Staff login</a>
 </div>
 </div>
 </div>
@@ -760,7 +767,11 @@ source: 'website'
 .then(function(data){
 if(data && data.ok){
 form.reset();
-status.textContent = 'Thank you! We have your enquiry and will be in touch soon.';
+status.textContent = 'Thank you! We have your enquiry and will be in touch soon. Want to help us prepare? ';
+var more = document.createElement('a');
+more.href = 'https://app.balakdrithi.com/enquire?src=website';
+more.textContent = 'Share a few more details (2 minutes)';
+status.appendChild(more);
 status.className = 'form-status ok';
 } else {
 status.textContent = (data && data.error) || 'Something went wrong. Please email hello@balakdrithi.com.';
