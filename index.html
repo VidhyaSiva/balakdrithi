@@ -120,6 +120,22 @@ border-color:var(--teal); outline:none;
 .form-status.ok{display:block; background:#e6f2ea; color:#1e6b37;}
 .form-status.err{display:block; background:#fdecea; color:#a3261b;}
 
+
+/* ---- Careers ---- */
+.careers-grid{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start;}
+@media(max-width:900px){ .careers-grid{grid-template-columns:1fr;} }
+.role-list{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:22px 0;}
+@media(max-width:480px){ .role-list{grid-template-columns:1fr;} }
+.role-chip{background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px;}
+.role-chip strong{display:block; color:var(--teal-deep); font-size:0.98rem;}
+.role-chip span{font-size:0.85rem; color:#5d6b70;}
+.perks{list-style:none; padding:0; margin:0 0 18px; display:flex; flex-direction:column; gap:10px;}
+.perks li{padding-left:26px; position:relative; color:#4a4034;}
+.perks li::before{content:""; position:absolute; left:0; top:7px; width:12px; height:12px; border-radius:50%; background:var(--gold);}
+.careers-form{max-width:none; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
+.careers-form h3{font-size:1.25rem; margin-bottom:2px;}
+.careers-form input[type=file]{padding:9px; font-size:0.85rem;}
+
 /* ---- Hero visual: milestone pyramid block stack (own grid column, not overlaid) ---- */
 .hero-visual{display:flex; justify-content:center; width:100%;}
 .hero-bg-stack{
@@ -341,6 +357,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <a href="#services">Services</a>
 <a href="#for">Who We're For</a>
 <a href="#team">Our Team</a>
+<a href="#careers">Careers</a>
 </nav>
 <a href="#contact" class="nav-cta">Get in touch</a>
 </div>
@@ -371,7 +388,6 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <label for="hf-interest">I'm interested in</label>
 <select id="hf-interest" name="interest">
 <option value="Enrolling my child">Enrolling my child</option>
-<option value="Joining the team">Joining the team</option>
 <option value="Other">Other</option>
 </select>
 </div>
@@ -396,7 +412,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 </div>
 <div class="form-group">
 <label for="hf-message">Message</label>
-<textarea id="hf-message" name="message" rows="3" placeholder="Tell us a bit about your child, or your background."></textarea>
+<textarea id="hf-message" name="message" rows="3" placeholder="Tell us a bit about your child."></textarea>
 </div>
 <div class="hp" aria-hidden="true"><label for="hf-company">Company</label><input type="text" id="hf-company" name="company" tabindex="-1" autocomplete="off"></div>
 <label class="consent"><input type="checkbox" id="hf-consent" required> <span>I agree that Balak Drithi may store these details and contact me about my enquiry. I can ask for them to be deleted at any time.</span></label>
@@ -696,10 +712,94 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 </div>
 </section>
 
+<section id="careers">
+<div class="wrap careers-grid">
+<div class="reveal">
+<div class="section-eyebrow">Careers</div>
+<h2 class="section-title">Join our founding team</h2>
+<p class="section-body">We're building the founding team for Balak Drithi, a new full-time early intervention center in Chennai for children aged 2&ndash;8 with autism.</p>
+<div class="role-list">
+<div class="role-chip"><strong>ABA Therapists</strong><span>Full-time, working directly with children</span></div>
+<div class="role-chip"><strong>BCBA / Clinical Supervisor</strong><span>Leads assessments, programs and therapist supervision</span></div>
+<div class="role-chip"><strong>Occupational Therapist</strong><span>Sensory and fine-motor sessions at the center</span></div>
+<div class="role-chip"><strong>Speech Therapist</strong><span>Communication and language sessions at the center</span></div>
+<div class="role-chip"><strong>Physiotherapist</strong><span>Gross-motor sessions at the center</span></div>
+<div class="role-chip"><strong>Center Admin &amp; Coordinator</strong><span>Families, scheduling and the day-to-day running of the center</span></div>
+</div>
+<ul class="perks">
+<li>About 40 hours of training plus two weeks of shadowing before you work with a child on your own.</li>
+<li>Never more than 4 children assigned to a therapist.</li>
+<li>All our work is assent-based and evidence-based.</li>
+</ul>
+<p class="section-body" style="font-size:0.95rem;">See our hiring post on <a href="https://www.linkedin.com/posts/balak-drithi_hiring-aba-autism-activity-7520136077572104192-T20c" target="_blank" rel="noopener" style="color:var(--teal); font-weight:600; text-decoration:underline;">LinkedIn</a>, or apply here.</p>
+</div>
+<form class="hero-form careers-form reveal" id="apply-form" enctype="multipart/form-data" novalidate>
+<h3>Apply</h3>
+<p class="form-hint" style="margin-top:0;">It takes about 3 minutes. We reply to every application.</p>
+<div class="form-group">
+<label for="ap-role">Role you're applying for</label>
+<select id="ap-role" name="role" required>
+<option value="">Choose a role&hellip;</option>
+<option value="aba_therapist">ABA Therapist</option>
+<option value="bcba">BCBA / Clinical Supervisor</option>
+<option value="ot">Occupational Therapist (OT)</option>
+<option value="st">Speech Therapist (ST)</option>
+<option value="pt">Physiotherapist (PT)</option>
+<option value="admin_coordinator">Center Admin &amp; Coordinator</option>
+</select>
+</div>
+<div class="form-group">
+<label for="ap-name">Full name</label>
+<input type="text" id="ap-name" name="full_name" autocomplete="name" required maxlength="120">
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="ap-phone">WhatsApp number</label>
+<input type="tel" id="ap-phone" name="phone" autocomplete="tel" placeholder="98400 12345" maxlength="30">
+</div>
+<div class="form-group">
+<label for="ap-email">Email</label>
+<input type="email" id="ap-email" name="email" autocomplete="email" maxlength="200">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="ap-city">City</label>
+<input type="text" id="ap-city" name="city" maxlength="120" placeholder="Chennai">
+</div>
+<div class="form-group">
+<label for="ap-years">Years of experience</label>
+<input type="number" id="ap-years" name="years_experience" min="0" max="60" step="0.5" inputmode="decimal">
+</div>
+</div>
+<div class="form-group">
+<label for="ap-qual">Highest qualification</label>
+<input type="text" id="ap-qual" name="qualification" maxlength="300" placeholder="e.g. M.Sc. Psychology, BASLP, BOT, BPT">
+</div>
+<div class="form-group">
+<label for="ap-reg">Registration or certification (if any)</label>
+<input type="text" id="ap-reg" name="registration" maxlength="120" placeholder="e.g. RCI number, BCBA / RBT">
+</div>
+<div class="form-group">
+<label for="ap-msg">Anything you'd like us to know</label>
+<textarea id="ap-msg" name="message" rows="3" maxlength="3000" placeholder="Why this work matters to you, availability, notice period&hellip;"></textarea>
+</div>
+<div class="form-group">
+<label for="ap-cv">Your CV (PDF or Word, up to 4 MB)</label>
+<input type="file" id="ap-cv" name="resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+</div>
+<div class="hp" aria-hidden="true"><label for="ap-company">Company</label><input type="text" id="ap-company" name="company" tabindex="-1" autocomplete="off"></div>
+<label class="consent"><input type="checkbox" id="ap-consent" required> <span>I agree that Balak Drithi may store my application and CV to consider me for this and future roles. I can ask for them to be deleted at any time.</span></label>
+<p class="form-status" id="ap-status" role="status"></p>
+<button type="submit" class="btn-primary hero-form-submit" id="ap-submit">Send application</button>
+</form>
+</div>
+</section>
+
 <section class="cta-band" id="contact">
 <div class="wrap reveal">
 <h2 class="section-title">We're opening soon.</h2>
-<p>Interested in enrolling your child, or joining our team? Get in touch and we'll respond within two business days.</p>
+<p>Interested in enrolling your child? Get in touch and we'll respond within two business days. Looking to join us? <a href="#careers" style="color:var(--gold-soft); text-decoration:underline;">See open roles</a>.</p>
 <a href="mailto:hello@balakdrithi.com" class="btn-primary" style="background:var(--gold); color:var(--ink);">Contact us</a>
 </div>
 </section>
@@ -719,6 +819,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <a href="#approach">Our Approach</a>
 <a href="#services">Services</a>
 <a href="#team">Our Team</a>
+<a href="#careers">Careers</a>
 </div>
 <div class="foot-col">
 <h4>Contact</h4>
@@ -746,7 +847,7 @@ status.textContent = 'Please give a WhatsApp number or an email so we can reach 
 status.className = 'form-status err';
 return;
 }
-var types = {'Enrolling my child':'enrolment','Joining the team':'careers','Other':'other'};
+var types = {'Enrolling my child':'enrolment','Other':'other'};
 btn.disabled = true; btn.textContent = 'Sending…';
 fetch('https://app.balakdrithi.com/api/enquiry', {
 method:'POST',
@@ -855,6 +956,38 @@ obs.unobserve(entry.target);
 });
 }, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
 els.forEach(function(el){ obs.observe(el); });
+})();
+
+(function(){
+var form = document.getElementById('apply-form');
+if(!form) return;
+var status = document.getElementById('ap-status');
+var btn = document.getElementById('ap-submit');
+function show(msg, ok){ status.textContent = msg; status.className = 'form-status ' + (ok ? 'ok' : 'err'); }
+form.addEventListener('submit', function(e){
+e.preventDefault();
+var role = document.getElementById('ap-role').value;
+var name = document.getElementById('ap-name').value.trim();
+var phone = document.getElementById('ap-phone').value.trim();
+var email = document.getElementById('ap-email').value.trim();
+var cv = document.getElementById('ap-cv').files[0];
+if(!role){ show('Please choose the role you\'re applying for.'); return; }
+if(name.length < 2){ show('Please give your name.'); return; }
+if(!phone && !email){ show('Please give a WhatsApp number or an email so we can reach you.'); return; }
+if(cv && cv.size > 4*1024*1024){ show('Your CV is larger than 4 MB. Please choose a smaller file.'); return; }
+if(!document.getElementById('ap-consent').checked){ show('Please tick the consent box.'); return; }
+var fd = new FormData(form);
+fd.set('consent', 'true');
+btn.disabled = true; btn.textContent = 'Sending…';
+fetch('https://app.balakdrithi.com/api/apply', { method:'POST', body: fd })
+.then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+.then(function(data){
+if(data && data.ok){ form.reset(); show('Thank you! We have your application and will be in touch.', true); }
+else { show((data && data.error) || 'Something went wrong. Please email your CV to hello@balakdrithi.com.'); }
+})
+.catch(function(){ show('Could not send. Please check your connection, or email your CV to hello@balakdrithi.com.'); })
+.then(function(){ btn.disabled = false; btn.textContent = 'Send application'; });
+});
 })();
 </script>
 </body>
