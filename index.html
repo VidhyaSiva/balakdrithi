@@ -135,6 +135,13 @@ border-color:var(--teal); outline:none;
 .careers-form{max-width:none; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
 .careers-form h3{font-size:1.25rem; margin-bottom:2px;}
 .careers-form input[type=file]{padding:9px; font-size:0.85rem;}
+.careers-form fieldset.talents{border:none; padding:0; margin:0;}
+.careers-form fieldset.talents legend{font-size:0.85rem; font-weight:600; margin-bottom:6px;}
+.talent-grid{display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; margin:4px 0 8px;}
+@media(max-width:480px){ .talent-grid{grid-template-columns:1fr;} }
+.careers-form .form-group label.talent{display:flex; gap:8px; align-items:center; font-size:0.88rem; font-weight:400;}
+.careers-form .talent input{width:16px; height:16px; padding:0; accent-color:var(--teal); flex-shrink:0;}
+
 
 /* ---- Hero visual: milestone pyramid block stack (own grid column, not overlaid) ---- */
 .hero-visual{display:flex; justify-content:center; width:100%;}
@@ -784,6 +791,31 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <label for="ap-msg">Anything you'd like us to know</label>
 <textarea id="ap-msg" name="message" rows="3" maxlength="3000" placeholder="Why this work matters to you, availability, notice period&hellip;"></textarea>
 </div>
+<div class="form-group">
+<label for="ap-goals">Where do you see your career in 5&ndash;10 years?</label>
+<textarea id="ap-goals" name="career_goals" rows="3" maxlength="2000" placeholder="Your long-term ambition, e.g. become a BCBA, lead a team, start your own practice, specialise in early speech&hellip;"></textarea>
+</div>
+<fieldset class="form-group talents">
+<legend>Talents or hobbies you could share with the children</legend>
+<p class="form-hint" style="margin-top:0;">Tick any that apply. We love bringing music, movement and art into the children's day.</p>
+<div class="talent-grid">
+<label class="talent"><input type="checkbox" name="talents" value="singing"> <span>Singing</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="instrument"> <span>Playing an instrument</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="dance"> <span>Dance</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="yoga"> <span>Yoga</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="sports"> <span>Sports</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="gymnastics"> <span>Gymnastics</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="swimming"> <span>Swimming</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="art"> <span>Painting / drawing</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="craft"> <span>Craft / clay</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="storytelling"> <span>Storytelling / drama</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="puppetry"> <span>Puppetry</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="gardening"> <span>Gardening</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="cooking"> <span>Cooking</span></label>
+<label class="talent"><input type="checkbox" name="talents" value="languages"> <span>Speaks several languages</span></label>
+</div>
+<input type="text" id="ap-talents-other" name="talents_other" maxlength="300" placeholder="Anything else? e.g. Bharatanatyam, chess, magic tricks">
+</fieldset>
 <div class="form-group">
 <label for="ap-cv">Your CV (PDF or Word, up to 4 MB)</label>
 <input type="file" id="ap-cv" name="resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
