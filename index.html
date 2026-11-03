@@ -153,6 +153,12 @@ border-color:var(--teal); outline:none;
 .hero-form .consent input{width:16px; height:16px; padding:0; margin-top:2px; flex-shrink:0; accent-color:var(--teal);}
 .hero-form .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
 .hero-form .form-hint{font-size:0.75rem; color:#5d6b70; margin-top:-6px;}
+.req{color:#A6472A; font-weight:700;}
+.req-note{font-size:0.75rem; color:#5d6b70; margin:0 0 6px;}
+#contact{scroll-margin-top:90px;}
+.hero-form .form-row > *{min-width:0;}
+.hero-form select, .hero-form input, .hero-form textarea{max-width:100%;}
+.hero-form input:invalid:focus, .hero-form select:invalid:focus, .hero-form textarea:invalid:focus{outline:2px solid #e8b9a8;}
 .form-status{font-size:0.9rem; padding:10px 14px; border-radius:10px; display:none;}
 .form-status.ok{display:block; background:#e6f2ea; color:#1e6b37;}
 .form-status.err{display:block; background:#fdecea; color:#a3261b;}
@@ -415,33 +421,44 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <div class="hero-content">
 <h1 class="hero-title">An early intervention center for children ages 2–8 with <em>Autism Spectrum Disorder</em></h1>
 <p class="hero-sub">Balak Drithi Autism Care: individualised, assent-based ABA early intervention. Opening soon in <strong>Chennai</strong>.</p>
-<form class="hero-form" id="inquiry-form">
+<form class="hero-form" id="inquiry-form" novalidate>
+<span id="contact"></span>
+<p class="req-note">Fields marked <span class="req">*</span> are required.</p>
 <div class="form-row">
 <div class="form-group">
-<label for="hf-name">Name</label>
-<input type="text" id="hf-name" name="name" autocomplete="name" required>
+<label for="hf-name">Your name <span class="req">*</span></label>
+<input type="text" id="hf-name" name="name" autocomplete="name" required minlength="2" maxlength="120">
 </div>
 <div class="form-group">
-<label for="hf-phone">WhatsApp number</label>
-<input type="tel" id="hf-phone" name="phone" autocomplete="tel" placeholder="98400 12345">
+<label for="hf-phone">WhatsApp number <span class="req">*</span></label>
+<input type="tel" id="hf-phone" name="phone" autocomplete="tel" placeholder="98400 12345" required maxlength="20">
 </div>
 </div>
 <div class="form-group">
-<label for="hf-email">Email</label>
-<input type="email" id="hf-email" name="email" autocomplete="email">
+<label for="hf-email">Email <span class="req">*</span></label>
+<input type="email" id="hf-email" name="email" autocomplete="email" required maxlength="200">
 </div>
-<p class="form-hint">Please give a WhatsApp number or an email, so we can reach you.</p>
 <div class="form-group">
-<label for="hf-interest">I'm interested in</label>
-<select id="hf-interest" name="interest">
+<label for="hf-interest">I'm interested in <span class="req">*</span></label>
+<select id="hf-interest" name="interest" required>
 <option value="Enrolling my child">Enrolling my child</option>
-<option value="Other">Other</option>
+<option value="Other">A question, or something else</option>
 </select>
 </div>
+<div class="form-row" id="hf-child">
+<div class="form-group">
+<label for="hf-child-name">Child's first name <span class="req">*</span></label>
+<input type="text" id="hf-child-name" name="child_first_name" maxlength="80">
+</div>
+<div class="form-group">
+<label for="hf-child-dob">Child's date of birth <span class="req">*</span></label>
+<input type="date" id="hf-child-dob" name="child_dob">
+</div>
+</div>
 <div class="form-row">
 <div class="form-group">
-<label for="hf-referral">How did you hear about us?</label>
-<select id="hf-referral" name="referral">
+<label for="hf-referral">How did you hear about us? <span class="req">*</span></label>
+<select id="hf-referral" name="referral" required>
 <option value="">Choose…</option>
 <option value="doctor">Doctor, clinic or hospital</option>
 <option value="school">School</option>
@@ -458,11 +475,11 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 </div>
 </div>
 <div class="form-group">
-<label for="hf-message">Message</label>
-<textarea id="hf-message" name="message" rows="3" placeholder="Tell us a bit about your child."></textarea>
+<label for="hf-message" id="hf-message-label">What would you like help with? <span class="req">*</span></label>
+<textarea id="hf-message" name="message" rows="3" required maxlength="2000" placeholder="What are you noticing in your child? Any diagnosis or assessment so far?"></textarea>
 </div>
 <div class="hp" aria-hidden="true"><label for="hf-company">Company</label><input type="text" id="hf-company" name="company" tabindex="-1" autocomplete="off"></div>
-<label class="consent"><input type="checkbox" id="hf-consent" required> <span>I agree that Balak Drithi may store these details and contact me about my enquiry. I can ask for them to be deleted at any time.</span></label>
+<label class="consent"><input type="checkbox" id="hf-consent" required> <span><span class="req">*</span> I agree that Balak Drithi may store these details and contact me about my enquiry. I can ask for them to be deleted at any time.</span></label>
 <p class="form-status" id="hf-status" role="status"></p>
 <div class="form-actions">
 <button type="submit" class="btn-primary hero-form-submit" id="hf-submit">Send inquiry</button>
@@ -803,8 +820,9 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <form class="hero-form careers-form reveal" id="apply-form" enctype="multipart/form-data" novalidate>
 <h3>Apply</h3>
 <p class="form-hint" style="margin-top:0;">It takes about 3 minutes. We reply to every application.</p>
+<p class="req-note">Fields marked <span class="req">*</span> are required.</p>
 <div class="form-group">
-<label for="ap-role">Role you're applying for</label>
+<label for="ap-role">Role you're applying for <span class="req">*</span></label>
 <select id="ap-role" name="role" required>
 <option value="">Choose a role&hellip;</option>
 <option value="aba_therapist">ABA Therapist</option>
@@ -817,32 +835,32 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 </select>
 </div>
 <div class="form-group">
-<label for="ap-name">Full name</label>
+<label for="ap-name">Full name <span class="req">*</span></label>
 <input type="text" id="ap-name" name="full_name" autocomplete="name" required maxlength="120">
 </div>
 <div class="form-row">
 <div class="form-group">
-<label for="ap-phone">WhatsApp number</label>
-<input type="tel" id="ap-phone" name="phone" autocomplete="tel" placeholder="98400 12345" maxlength="30">
+<label for="ap-phone">WhatsApp number <span class="req">*</span></label>
+<input type="tel" id="ap-phone" name="phone" autocomplete="tel" placeholder="98400 12345" maxlength="30" required>
 </div>
 <div class="form-group">
-<label for="ap-email">Email</label>
-<input type="email" id="ap-email" name="email" autocomplete="email" maxlength="200">
+<label for="ap-email">Email <span class="req">*</span></label>
+<input type="email" id="ap-email" name="email" autocomplete="email" maxlength="200" required>
 </div>
 </div>
 <div class="form-row">
 <div class="form-group">
-<label for="ap-city">City</label>
-<input type="text" id="ap-city" name="city" maxlength="120" placeholder="Chennai">
+<label for="ap-city">City <span class="req">*</span></label>
+<input type="text" id="ap-city" name="city" maxlength="120" placeholder="Chennai" required>
 </div>
 <div class="form-group">
-<label for="ap-years">Years of experience</label>
-<input type="number" id="ap-years" name="years_experience" min="0" max="60" step="0.5" inputmode="decimal">
+<label for="ap-years">Years of experience <span class="req">*</span></label>
+<input type="number" id="ap-years" name="years_experience" min="0" max="60" step="0.5" inputmode="decimal" required placeholder="0 if you're just starting">
 </div>
 </div>
 <div class="form-group">
-<label for="ap-qual">Highest qualification</label>
-<input type="text" id="ap-qual" name="qualification" maxlength="300" placeholder="e.g. M.Sc. Psychology, B.Ed. Special Education, BASLP, BOT, BPT">
+<label for="ap-qual">Highest qualification <span class="req">*</span></label>
+<input type="text" id="ap-qual" name="qualification" maxlength="300" required placeholder="e.g. M.Sc. Psychology, B.Ed. Special Education, BASLP, BOT, BPT">
 </div>
 <div class="form-group">
 <label for="ap-reg">Registration or certification (if any)</label>
@@ -878,22 +896,23 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <input type="text" id="ap-talents-other" name="talents_other" maxlength="300" placeholder="Anything else? e.g. Bharatanatyam, chess, magic tricks">
 </fieldset>
 <div class="form-group">
-<label for="ap-cv">Your CV (PDF or Word, up to 4 MB)</label>
-<input type="file" id="ap-cv" name="resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+<label for="ap-cv">Your CV (PDF or Word, up to 4 MB) <span class="req">*</span></label>
+<input type="file" id="ap-cv" name="resume" required accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
 </div>
 <div class="hp" aria-hidden="true"><label for="ap-company">Company</label><input type="text" id="ap-company" name="company" tabindex="-1" autocomplete="off"></div>
-<label class="consent"><input type="checkbox" id="ap-consent" required> <span>I agree that Balak Drithi may store my application and CV to consider me for this and future roles. I can ask for them to be deleted at any time.</span></label>
+<label class="consent"><input type="checkbox" id="ap-consent" required> <span><span class="req">*</span> I agree that Balak Drithi may store my application and CV to consider me for this and future roles for up to 6 months. I can ask for them to be deleted at any time.</span></label>
 <p class="form-status" id="ap-status" role="status"></p>
 <button type="submit" class="btn-primary hero-form-submit" id="ap-submit">Send application</button>
 </form>
 </div>
 </section>
 
-<section class="cta-band" id="contact">
+<section class="cta-band" id="opening">
 <div class="wrap reveal">
 <h2 class="section-title">We're opening soon.</h2>
 <p>Interested in enrolling your child? Get in touch and we'll respond within two business days. Looking to join us? <a href="#careers" style="color:var(--gold-soft); text-decoration:underline;">See open roles</a>.</p>
-<a href="mailto:hello@balakdrithi.com" class="btn-primary" style="background:var(--gold); color:var(--ink);">Contact us</a>
+<a href="#contact" data-interest="Other" class="btn-primary js-contact" style="background:var(--gold); color:var(--ink);">Send us a message</a>
+<p style="margin-top:12px; font-size:0.9rem;">Or WhatsApp us on <a href="https://wa.me/919176620514" style="color:var(--gold-soft); text-decoration:underline;">+91 91766 20514</a>.</p>
 </div>
 </section>
 
@@ -935,12 +954,20 @@ var btn = document.getElementById('hf-submit');
 var phone = document.getElementById('hf-phone').value.trim();
 var email = document.getElementById('hf-email').value.trim();
 var interest = document.getElementById('hf-interest').value;
+var enrol = interest === 'Enrolling my child';
+var childName = document.getElementById('hf-child-name').value.trim();
+var dob = document.getElementById('hf-child-dob').value;
+var message = document.getElementById('hf-message').value.trim();
 status.className = 'form-status';
-if(!phone && !email){
-status.textContent = 'Please give a WhatsApp number or an email so we can reach you.';
-status.className = 'form-status err';
-return;
-}
+function err(msg, id){ status.textContent = msg; status.className = 'form-status err'; if(id){ document.getElementById(id).focus(); } }
+if(document.getElementById('hf-name').value.trim().length < 2) return err('Please give your name.', 'hf-name');
+if(phone.replace(/[^0-9]/g,'').length < 10) return err('Please give your WhatsApp number (10 digits).', 'hf-phone');
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return err('Please give your email address.', 'hf-email');
+if(enrol && !childName) return err("Please give your child's first name.", 'hf-child-name');
+if(enrol && !dob) return err("Please give your child's date of birth.", 'hf-child-dob');
+if(!document.getElementById('hf-referral').value) return err('Please tell us how you heard about us.', 'hf-referral');
+if(message.length < 10) return err(enrol ? 'Please tell us a little about what you would like help with.' : 'Please write your question or message.', 'hf-message');
+if(!document.getElementById('hf-consent').checked) return err('Please tick the consent box.', 'hf-consent');
 var types = {'Enrolling my child':'enrolment','Other':'other'};
 btn.disabled = true; btn.textContent = 'Sending…';
 fetch('https://app.balakdrithi.com/api/enquiry', {
@@ -951,7 +978,9 @@ type: types[interest] || 'other',
 parent_name: document.getElementById('hf-name').value.trim(),
 phone: phone,
 email: email,
-message: document.getElementById('hf-message').value.trim(),
+message: message,
+child_first_name: enrol ? childName : '',
+child_dob: enrol ? dob : '',
 referral_type: document.getElementById('hf-referral').value,
 referral_org: document.getElementById('hf-referral-name').value.trim(),
 consent: document.getElementById('hf-consent').checked,
@@ -979,6 +1008,28 @@ status.className = 'form-status err';
 })
 .then(function(){ btn.disabled = false; btn.textContent = 'Send inquiry'; });
 });
+
+(function(){
+var sel = document.getElementById('hf-interest');
+var child = document.getElementById('hf-child');
+var label = document.getElementById('hf-message-label');
+var msg = document.getElementById('hf-message');
+function sync(){
+var enrol = sel.value === 'Enrolling my child';
+child.style.display = enrol ? '' : 'none';
+label.innerHTML = (enrol ? 'What would you like help with?' : 'Your question or message') + ' <span class="req">*</span>';
+msg.placeholder = enrol ? 'What are you noticing in your child? Any diagnosis or assessment so far?' : 'How can we help?';
+}
+sel.addEventListener('change', sync); sync();
+document.querySelectorAll('.js-contact').forEach(function(a){
+a.addEventListener('click', function(e){
+e.preventDefault();
+if(a.dataset.interest){ sel.value = a.dataset.interest; sync(); }
+document.getElementById('contact').scrollIntoView({behavior:'smooth', block:'start'});
+setTimeout(function(){ document.getElementById('hf-name').focus({preventScroll:true}); }, 500);
+});
+});
+})();
 
 (function(){
 var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1067,8 +1118,13 @@ var email = document.getElementById('ap-email').value.trim();
 var cv = document.getElementById('ap-cv').files[0];
 if(!role){ show('Please choose the role you\'re applying for.'); return; }
 if(name.length < 2){ show('Please give your name.'); return; }
-if(!phone && !email){ show('Please give a WhatsApp number or an email so we can reach you.'); return; }
-if(cv && cv.size > 4*1024*1024){ show('Your CV is larger than 4 MB. Please choose a smaller file.'); return; }
+if(phone.replace(/[^0-9]/g,'').length < 10){ show('Please give your WhatsApp number (10 digits).'); return; }
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ show('Please give your email address.'); return; }
+if(!document.getElementById('ap-city').value.trim()){ show('Please give your city.'); return; }
+if(document.getElementById('ap-years').value === ''){ show('Please give your years of experience (0 is fine).'); return; }
+if(!document.getElementById('ap-qual').value.trim()){ show('Please give your highest qualification.'); return; }
+if(!cv){ show('Please attach your CV (PDF or Word).'); return; }
+if(cv.size > 4*1024*1024){ show('Your CV is larger than 4 MB. Please choose a smaller file.'); return; }
 if(!document.getElementById('ap-consent').checked){ show('Please tick the consent box.'); return; }
 var fd = new FormData(form);
 fd.set('consent', 'true');
