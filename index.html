@@ -483,7 +483,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <p class="form-status" id="hf-status" role="status"></p>
 <div class="form-actions">
 <button type="submit" class="btn-primary hero-form-submit" id="hf-submit">Send inquiry</button>
-<a href="https://app.balakdrithi.com/enquire?src=website" class="btn-secondary">Tell us more about your child</a>
+<a href="https://app.balakdrithi.com/enquire?src=website" class="btn-secondary" id="hf-more">Prefer the detailed form?</a>
 </div>
 </form>
 </div>
@@ -991,12 +991,14 @@ source: 'website'
 .then(function(data){
 if(data && data.ok){
 form.reset();
-status.textContent = 'Thank you! We have your enquiry and will be in touch soon. Want to help us prepare? ';
-var more = document.createElement('a');
-more.href = 'https://app.balakdrithi.com/enquire?src=website';
-more.textContent = 'Share a few more details (2 minutes)';
-status.appendChild(more);
+status.textContent = 'Thank you! We have your enquiry. Padma from our team will WhatsApp or call you within two business days, and send you a private link to share your child\'s details and documents. ';
+var wa = document.createElement('a');
+wa.href = 'https://wa.me/919176620514?text=' + encodeURIComponent('Hi Balak Drithi, I just sent an enquiry on your website.');
+wa.target = '_blank'; wa.rel = 'noopener';
+wa.textContent = 'Message us on WhatsApp';
+status.appendChild(wa);
 status.className = 'form-status ok';
+document.getElementById('hf-more').style.display = 'none';
 } else {
 status.textContent = (data && data.error) || 'Something went wrong. Please email hello@balakdrithi.com.';
 status.className = 'form-status err';
