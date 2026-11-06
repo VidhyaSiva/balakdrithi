@@ -903,6 +903,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <label class="consent"><input type="checkbox" id="ap-consent" required> <span><span class="req">*</span> I agree that Balak Drithi may store my application and CV to consider me for this and future roles for up to 6 months. I can ask for them to be deleted at any time.</span></label>
 <p class="form-status" id="ap-status" role="status"></p>
 <button type="submit" class="btn-primary hero-form-submit" id="ap-submit">Send application</button>
+<p style="margin:12px 0 0;font-size:.9rem;color:var(--ink);opacity:.75">Questions about working with us? Email <a href="mailto:careers@balakdrithi.com" style="color:var(--teal)">careers@balakdrithi.com</a></p>
 </form>
 </div>
 </section>
@@ -1135,9 +1136,9 @@ fetch('https://app.balakdrithi.com/api/apply', { method:'POST', body: fd })
 .then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
 .then(function(data){
 if(data && data.ok){ form.reset(); show('Thank you! We have your application and will be in touch.', true); }
-else { show((data && data.error) || 'Something went wrong. Please email your CV to hello@balakdrithi.com.'); }
+else { show((data && data.error) || 'Something went wrong. Please email your CV to careers@balakdrithi.com.'); }
 })
-.catch(function(){ show('Could not send. Please check your connection, or email your CV to hello@balakdrithi.com.'); })
+.catch(function(){ show('Could not send. Please check your connection, or email your CV to careers@balakdrithi.com.'); })
 .then(function(){ btn.disabled = false; btn.textContent = 'Send application'; });
 });
 })();
