@@ -35,7 +35,9 @@ header.top .bar{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;al
 .logo img{height:48px;width:auto}
 .logo small{display:block;font-family:'Work Sans',sans-serif;font-size:.7rem;font-weight:600;color:var(--rust);letter-spacing:.03em}
 nav.top a{margin-left:18px;font-size:.95rem;font-weight:500;color:var(--ink);text-decoration:none}
-nav.top a.cta{background:var(--teal);color:#fff;padding:9px 18px;border-radius:999px}
+nav.top a.cta{background:var(--teal);color:#fff;padding:9px 18px;border-radius:999px;white-space:nowrap}
+.logo span{white-space:nowrap}
+@media(max-width:400px){.logo{font-size:1.05rem}.logo img{height:40px}nav.top a.cta{padding:8px 14px;margin-left:0}}
 @media(max-width:640px){nav.top a:not(.cta){display:none}}
 .crumbs{font-size:.85rem;color:#6b6157;margin:28px 0 8px}
 .crumbs a{color:#6b6157}
@@ -83,7 +85,7 @@ nav.top a.cta,.nowrap{white-space:nowrap}@media(max-width:640px){.logo img{heigh
 </head>
 <body>
 <header class="top"><div class="bar">
-<a class="logo" href="/"><img src="/logo.png" alt="Balak Drithi Academy logo"><span>Balak Drithi<small>Seen, Supported, Strong</small></span></a>
+<a class="logo" href="/"><img src="/logo.png" alt="Balak Drithi Academy logo"><span>Balak Drithi Academy<small>Seen, Supported, Strong</small></span></a>
 <nav class="top"><a href="/#approach">Our Approach</a><a href="/articles/">Articles</a><a href="/#careers">Careers</a><a class="cta" href="/#contact">Get in touch</a></nav>
 </div></header>
 <main class="wrap">
