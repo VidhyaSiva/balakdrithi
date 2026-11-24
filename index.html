@@ -107,7 +107,22 @@ font-size:0.92rem; font-weight:600; white-space:nowrap;
 .nav-cta:hover{background:var(--teal-deep);}
 @media(max-width:1280px){ .navlinks{font-size:0.88rem;} .logo{font-size:1.15rem;} }
 @media(max-width:1060px){ .navlinks{gap:12px; font-size:0.82rem;} .logo-tag-2{display:none;} }
-@media(max-width:960px){ .navlinks{display:none;} }
+.menu-btn{display:none; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--teal-deep); cursor:pointer; flex:none;}
+.menu-btn svg{width:22px; height:22px;}
+.menu-only{display:none;}
+@media(max-width:960px){
+  .menu-btn{display:inline-flex;}
+  .navlinks{display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:#fff; border-bottom:1px solid var(--line); box-shadow:0 12px 24px rgba(0,0,0,.08); padding:6px 24px 18px; font-size:1.05rem;}
+  header.menu-open .navlinks{display:flex;}
+  .navlinks a{padding:14px 2px; border-bottom:1px solid var(--line); opacity:1;}
+  .navlinks a:last-child{border-bottom:none;}
+  .nav{gap:12px;}
+  .nav-cta{margin-left:auto;}
+}
+@media(max-width:560px){
+  .nav-cta{display:none;}
+  .menu-only{display:block; color:var(--teal); font-weight:600;}
+}
 
 /* ---- Hero ---- */
 .hero{padding:76px 0 60px; position:relative;}
@@ -417,7 +432,7 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <img src="logo.png" alt="Balak Drithi Academy logo" class="logo-mark">
 <span class="logo-text">Balak Drithi Academy<span class="logo-tag">Seen, Supported, Strong<span class="logo-tag-2">Where Every Child Belongs.</span></span></span>
 </div>
-<nav class="navlinks">
+<nav class="navlinks" id="site-menu">
 <a href="#vision">Our Mission</a>
 <a href="#approach">Our Approach</a>
 <a href="#services">Services</a>
@@ -425,8 +440,10 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 <a href="#team">Our Team</a>
 <a href="/articles/">Articles</a>
 <a href="#careers">Careers</a>
+<a href="#contact" class="menu-only">Get in touch</a>
 </nav>
 <a href="#contact" class="nav-cta">Get in touch</a>
+<button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div>
 </header>
 
@@ -974,6 +991,14 @@ footer a{opacity:0.85;} footer a:hover{opacity:1;}
 </footer>
 
 <script>
+(function(){
+var h=document.querySelector('header'), b=document.querySelector('.menu-btn');
+if(!h||!b) return;
+function set(open){h.classList.toggle('menu-open',open); b.setAttribute('aria-expanded',open); b.setAttribute('aria-label',open?'Close menu':'Open menu');}
+b.addEventListener('click',function(){set(!h.classList.contains('menu-open'));});
+document.querySelectorAll('#site-menu a').forEach(function(a){a.addEventListener('click',function(){set(false);});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape') set(false);});
+})();
 document.getElementById('inquiry-form').addEventListener('submit', function(e){
 e.preventDefault();
 var form = this;
