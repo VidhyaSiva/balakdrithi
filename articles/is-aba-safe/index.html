@@ -88,6 +88,17 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .cmp ul{margin:0 0 0 18px}
 @media(max-width:560px){.cmp{grid-template-columns:1fr}}
 </style>
+<style>
+.engage{border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:34px 0;background:#fff}
+.engage h3{margin:0 0 10px;font-size:1.15rem}
+.engage .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:6px}
+.engage button,.engage a.pill{font:inherit;font-weight:600;font-size:.95rem;border:1.5px solid var(--teal);background:#fff;color:var(--teal);border-radius:999px;padding:8px 16px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.engage button:hover,.engage a.pill:hover{background:var(--sand-deep)}
+.engage a.pill.wa{background:#25D366;border-color:#25D366;color:#fff}
+.engage .thanks{color:var(--teal);font-weight:600;display:none}
+.engage hr{border:none;border-top:1px solid var(--line);margin:16px 0}
+.engage p{margin:0 0 10px;color:#4a4034;font-size:.98rem}
+</style>
 </head>
 <body>
 <header class="top"><div class="bar">
@@ -143,6 +154,28 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 <div class="cta-box"><h2>Have a question we haven't answered?</h2><p>Talk to our team. We're happy to explain how we work, with no pressure.</p><a class="btn" href="/#contact">Get in touch</a></div>
 
+<section class="engage" data-page="/articles/is-aba-safe/">
+<h3>Was this helpful?</h3>
+<div class="row" id="fb-btns"><button type="button" data-v="1">👍 Yes</button><button type="button" data-v="0">👎 No</button></div>
+<div class="thanks" id="fb-thanks">Thank you for letting us know. 💛</div>
+<hr>
+<h3>Have a question about this?</h3>
+<p>Ask us privately. A member of our team will reply.</p>
+<div class="row"><a class="pill wa" href="https://wa.me/919566208431?text=Hi%20Balak%20Drithi%20Academy%2C%20I%20have%20a%20question%20about%20your%20article%20%22Is%20ABA%20therapy%20safe%3F%20Your%20questions%2C%20answered%20honestly%22%3A%20" target="_blank" rel="noopener">💬 Ask us on WhatsApp</a><a class="pill" href="mailto:hello@balakdrithi.com?subject=Question%20about%3A%20Is%20ABA%20therapy%20safe%3F%20Your%20questions%2C%20answered%20honestly">✉️ Email us</a></div>
+<hr>
+<h3>Share with a parent who may find this useful</h3>
+<div class="row"><a class="pill wa" href="https://wa.me/?text=Is%20ABA%20therapy%20safe%3F%20Your%20questions%2C%20answered%20honestly%20%E2%80%93%20https%3A//balakdrithi.com/articles/is-aba-safe/" target="_blank" rel="noopener">Share on WhatsApp</a><a class="pill" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalakdrithi.com%2Farticles%2Fis-aba-safe%2F" target="_blank" rel="noopener">Share on Facebook</a><button type="button" id="copy-link">Copy link</button></div>
+</section>
+<script>
+(function(){var s=document.querySelector('.engage');if(!s)return;var page=s.dataset.page,key='bd_fb_'+page,done=false;
+function thanks(){document.getElementById('fb-btns').style.display='none';document.getElementById('fb-thanks').style.display='block';}
+try{if(localStorage.getItem(key)){thanks();done=true;}}catch(e){}
+s.querySelectorAll('#fb-btns button').forEach(function(b){b.addEventListener('click',function(){if(done)return;done=true;thanks();
+try{localStorage.setItem(key,'1');}catch(e){}
+fetch('https://vqjbmtntjbcecafndjyy.supabase.co/rest/v1/article_feedback',{method:'POST',keepalive:true,headers:{'apikey':'sb_publishable_nt8vA7GbTLrRokQ_hFUDXQ__USYb_7r','Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({page:page,helpful:b.dataset.v==='1'})}).catch(function(){});});});
+var c=document.getElementById('copy-link');c&&c.addEventListener('click',function(){var u=location.origin+page;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){c.textContent='Link copied ✓';},function(){prompt('Copy this link:',u);});});
+})();
+</script>
 <div class="sources"><strong>Sources</strong>
 <ul>
 <li><a href="https://bacb.com/wp-content/ethics-code-for-behavior-analysts/">Behavior Analyst Certification Board: Ethics Code for Behavior Analysts (Standard 2.11, assent)</a></li>
